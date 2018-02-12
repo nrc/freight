@@ -17,8 +17,8 @@ fn main() {
 fn run_command(cmd: &str) -> Result<(), ()> {
     match cmd {
         "paths" => {
-            // TODO sub-command args, not args?
-            if let Err(_) = freight_paths::freight_paths(freight_paths::PathArgs::from_env()) {
+            // TODO manifest-path arg
+            if let Err(_) = freight_paths::freight_paths(freight_paths::PathArgs::from_env(None)) {
                 println!("Unhandled error");
             }
         }

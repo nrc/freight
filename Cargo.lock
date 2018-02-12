@@ -21,6 +21,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "cargo"
 version = "0.1.0"
+dependencies = [
+ "freight-paths 0.1.0",
+ "structopt 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "clap"
