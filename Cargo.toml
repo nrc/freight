@@ -3,4 +3,5 @@ members = [
     "freight",
     "cargo",
     "freight-commands/*",
+    "freight-data",
 ]
