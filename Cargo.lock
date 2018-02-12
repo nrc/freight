@@ -70,6 +70,9 @@ dependencies = [
 [[package]]
 name = "freight-tidy"
 version = "0.1.0"
+dependencies = [
+ "data 0.1.0",
+]
 
 [[package]]
 name = "itoa"
