@@ -4,3 +4,5 @@ version = "0.1.0"
 authors = ["Nick Cameron <ncameron@mozilla.com>"]
 
 [dependencies]
+freight-paths = { path = "../freight-commands/freight-paths" }
+freight-tidy = { path = "../freight-commands/freight-tidy" }

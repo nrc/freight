@@ -19,6 +19,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "freight"
 version = "0.1.0"
+dependencies = [
+ "freight-paths 0.1.0",
+ "freight-tidy 0.1.0",
+]
 
 [[package]]
 name = "freight-paths"
