@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "freight",
+    "cargo",
+    "freight-commands/*",
+]

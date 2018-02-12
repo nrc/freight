@@ -1,0 +1,12 @@
+[[package]]
+name = "cargo"
+version = "0.1.0"
+
+[[package]]
+name = "freight"
+version = "0.1.0"
+
+[[package]]
+name = "freight-tidy"
+version = "0.1.0"
+
