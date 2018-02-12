@@ -8,6 +8,11 @@ A Cargo re-implementation using a Git-like plumbing/porcelain architecture.
 Use `cargo build` to build and `cargo run -p freight` to run the main binary.
 
 
+### Arguments and env vars
+
+`FREIGHT_DIR` specifies the directory to leave freight metadata files for the
+current project. The default is `$PWD/.freight`.
+
 ## Design
 
 Every Cargo command is decomposed into several Freight commands. Each Freight

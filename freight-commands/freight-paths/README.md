@@ -2,6 +2,7 @@
 
 Discovers and decides upon paths to metadata files (Cargo.toml, config files, etc).
 
+
 ## Input
 
 * arguments
@@ -10,7 +11,7 @@ Discovers and decides upon paths to metadata files (Cargo.toml, config files, et
   - `CARGO_HOME`
   - `CARGO_TARGET_DIR`
 
+
 ## Output
 
-A `data::FilePaths` struct, or a file `.freight.json` in the current working
-directory.
+A `data::FilePaths` struct, or a file `paths.json`.

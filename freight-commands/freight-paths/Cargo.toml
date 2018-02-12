@@ -5,3 +5,5 @@ authors = ["Nick Cameron <ncameron@mozilla.com>"]
 
 [dependencies]
 data = { path = "../../freight-data" }
+structopt = "0.2.1"
+serde_json = "1.0"
