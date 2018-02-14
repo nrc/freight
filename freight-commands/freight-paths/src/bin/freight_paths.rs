@@ -10,8 +10,9 @@ use std::process;
 use structopt::StructOpt;
 
 fn main() {
-    if let Err(_) = run() {
-        handle_err();
+    if let Err(e) = run() {
+        eprintln!("An error occurred: {:?}", e);
+        process::exit(1);
     }
 }
 // TODO the usage uses the name of the binary from args, but that is wrong for subcommands
@@ -28,9 +29,4 @@ fn run() -> Result<(), Error> {
     let paths = freight_paths(args)?;
     data::write_metadata(Path::new("paths.json"), &serde_json::to_string(&paths)?)?;
     Ok(())
-}
-
-fn handle_err() {
-    eprintln!("An error occurred");
-    process::exit(1);
 }

@@ -11,11 +11,13 @@ const VERSION: &'static str = "0.1.0";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct FilePaths {
-    version: String,
-    root_toml: String,
-    lock: String,
+    pub version: String,
+    pub root_toml: String,
+    pub workspace_root: String,
+    pub target_dir: String,
+    pub cargo_home: String,
     // These config files are in priority order with the highest priority first.
-    config: Vec<String>,
+    pub config: Vec<String>,
 }
 
 impl FilePaths {
@@ -23,11 +25,14 @@ impl FilePaths {
         FilePaths {
             version: VERSION.to_owned(),
             root_toml: String::new(),
-            lock: String::new(),
+            workspace_root: String::new(),
+            target_dir: String::new(),
+            cargo_home: String::new(),
             config: Vec::new(),
         }
     }
 }
+
 
 /// Write metadata to a file given by the relative path.
 pub fn write_metadata(path: &Path, content: &str) -> Result<(), IoError> {
