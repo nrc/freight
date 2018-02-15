@@ -4,5 +4,7 @@ version = "0.1.0"
 authors = ["Nick Cameron <ncameron@mozilla.com>"]
 
 [dependencies]
+failure = "0.1"
 freight-paths = { path = "../freight-commands/freight-paths" }
+freight-configure = { path = "../freight-commands/freight-configure" }
 structopt = "0.2.1"

@@ -1,4 +1,6 @@
 extern crate data;
+#[macro_use]
+extern crate failure;
 extern crate serde_json;
 
 use data::FilePaths;
@@ -28,15 +30,17 @@ impl PathArgs {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Fail)]
 pub enum Error {
+    #[fail(display = "io error")]
     Io,
-    // Cannot determine location of Cargo.toml
+    #[fail(display = "cannot determine location of Cargo.toml")]
     Toml,
-    // Bad cwd.
+    #[fail(display = "bad cwd")]
     Cwd,
-    // Could not find home directory.
+    #[fail(display = "could not find home directory")]
     Home,
+    #[fail(display = "unknown error")]
     Unknown,
 }
 

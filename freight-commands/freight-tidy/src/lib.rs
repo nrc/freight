@@ -1,10 +1,13 @@
 extern crate data;
+#[macro_use]
+extern crate failure;
 
 use std::fs::remove_dir_all;
 use std::io::Error as IoError;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Fail)]
 pub enum Error {
+    #[fail(display = "io error")]
     Io,
 }
 

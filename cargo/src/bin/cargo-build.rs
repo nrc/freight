@@ -1,8 +1,13 @@
+extern crate failure;
+extern crate freight_configure;
 extern crate freight_paths;
 #[macro_use]
 extern crate structopt;
 
-use freight_paths::{freight_paths, Error, PathArgs};
+use freight_paths::{freight_paths, PathArgs};
+use freight_configure::{freight_configure};
+use std::env;
+use failure::Error;
 use std::process;
 use structopt::StructOpt;
 
@@ -24,7 +29,11 @@ struct CliArgs {
 fn run() -> Result<(), Error> {
     let cli_args = CliArgs::from_args();
     let args = PathArgs::from_env(cli_args.manifest_path);
-    let _paths = freight_paths(args)?;
+    let paths = freight_paths(args)?;
+
+    let cwd = env::current_dir().expect("No cwd");
+
+    let _sconfig = freight_configure(cwd, paths)?;
     Ok(())
 }
 
