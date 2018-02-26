@@ -1,11 +1,16 @@
 #[macro_use]
 extern crate serde_derive;
 
+use std::any::Any;
+use std::collections::HashMap;
 use std::env;
 use std::fs::{DirBuilder, File};
 use std::io::Error as IoError;
 use std::io::{Write, Read};
 use std::path::{Path, PathBuf};
+use std::sync::Mutex;
+
+pub mod manifest;
 
 const VERSION: &'static str = "0.1.0";
 
@@ -60,11 +65,64 @@ impl Config {
             cargo_home: Path::new(&file_paths.cargo_home).to_owned(),
         }
     }
+
+    pub fn empty() -> Config {
+        Config {
+            version: VERSION.to_owned(),
+            cwd: PathBuf::new(),
+            workspace_root: PathBuf::new(),
+            root_toml: PathBuf::new(),
+            target_dir: PathBuf::new(),
+            cargo_home: PathBuf::new(),
+        }
+    }
 }
 
 // Will contain IO stuff too (shell/diagnostics, http)
 pub struct Context {
     pub config: Config,
+    // Command-specific data stored in the context.
+    pub user_data: Mutex<HashMap<UserKey, Box<Any>>>,
+}
+
+impl Context {
+    pub fn with_config(config: Config) -> Context {
+        Context {
+            config,
+            user_data: Mutex::new(HashMap::new()),
+        }
+    }
+
+    pub fn empty() -> Context {
+        Context {
+            config: Config::empty(),
+            user_data: Mutex::new(HashMap::new()),
+        }
+    }
+}
+
+/// Used to lookup user-data in Context.
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
+pub struct UserKey {
+    /// Which command is storing the data.
+    pub user: UserKind,
+    /// A command-defined id for data elements.
+    pub id: u32,
+}
+
+impl UserKey {
+    pub fn new(user: UserKind, id: u32) -> UserKey {
+        UserKey {
+            user,
+            id,
+        }
+    }
+}
+
+/// Each variant corresponds to a freight command which uses user-data.
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
+pub enum UserKind {
+    Manifest,
 }
 
 /// Write metadata to a file given by the relative path.

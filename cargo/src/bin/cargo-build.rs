@@ -5,12 +5,11 @@ extern crate freight_paths;
 extern crate structopt;
 
 use freight_paths::{freight_paths, PathArgs};
-use freight_configure::{freight_configure};
+use freight_configure::freight_configure;
 use std::env;
 use failure::Error;
 use std::process;
 use structopt::StructOpt;
-
 
 fn main() {
     if let Err(_) = run() {
